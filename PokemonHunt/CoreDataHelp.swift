@@ -13,7 +13,7 @@ func createAllPokemon() {
 
     createPokemon(name: "Bulbasaur", imageName: "bulbasaur")
     createPokemon(name: "Charmander", imageName: "charmander")
-    createPokemon(name: "Evee", imageName: "evee")
+    createPokemon(name: "Eevee", imageName: "eevee")
     createPokemon(name: "Jigglypuff", imageName: "jigglypuff")
     createPokemon(name: "Meowth", imageName: "meowth")
     createPokemon(name: "Mew", imageName: "mew")

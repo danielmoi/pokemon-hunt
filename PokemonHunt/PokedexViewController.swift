@@ -20,19 +20,39 @@ class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         caught = getAllCaughtPokemon()
         uncaught = getAllUncaughtPokemon()
-        print(caught)
-        print(uncaught)
         
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "CAUGHT"
+        }
+        return "UNCAUGHT"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if section == 0 {
+            return caught.count
+        }
+        return uncaught.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let pokemon: Pokemon
+        if indexPath.section == 0 {
+            pokemon = caught[indexPath.row]
+        } else {
+            pokemon = uncaught[indexPath.row]
+        }
         let cell = UITableViewCell()
+        cell.textLabel?.text = pokemon.name
+        cell.imageView?.image = UIImage(named: pokemon.imageName!)
         return cell
     }
     
