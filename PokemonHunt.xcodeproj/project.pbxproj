@@ -14,6 +14,7 @@
 		1E3EAE431FF5BD87009CA0D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E3EAE421FF5BD87009CA0D1 /* Assets.xcassets */; };
 		1E3EAE461FF5BD87009CA0D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E3EAE441FF5BD87009CA0D1 /* LaunchScreen.storyboard */; };
 		1E3EAE4F1FF5C69F009CA0D1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3EAE4E1FF5C69F009CA0D1 /* MapKit.framework */; };
+		1E3EAE511FF5DFF8009CA0D1 /* PokedexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3EAE501FF5DFF8009CA0D1 /* PokedexViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1E3EAE451FF5BD87009CA0D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E3EAE471FF5BD87009CA0D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E3EAE4E1FF5C69F009CA0D1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1E3EAE501FF5DFF8009CA0D1 /* PokedexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				1E3EAE381FF5BD87009CA0D1 /* AppDelegate.swift */,
 				1E3EAE3A1FF5BD87009CA0D1 /* ViewController.swift */,
 				1E3EAE3C1FF5BD87009CA0D1 /* Main.storyboard */,
+				1E3EAE501FF5DFF8009CA0D1 /* PokedexViewController.swift */,
 				1E3EAE421FF5BD87009CA0D1 /* Assets.xcassets */,
 				1E3EAE441FF5BD87009CA0D1 /* LaunchScreen.storyboard */,
 				1E3EAE471FF5BD87009CA0D1 /* Info.plist */,
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E3EAE3B1FF5BD87009CA0D1 /* ViewController.swift in Sources */,
+				1E3EAE511FF5DFF8009CA0D1 /* PokedexViewController.swift in Sources */,
 				1E3EAE391FF5BD87009CA0D1 /* AppDelegate.swift in Sources */,
 				1E3EAE411FF5BD87009CA0D1 /* PokemonHunt.xcdatamodeld in Sources */,
 			);
