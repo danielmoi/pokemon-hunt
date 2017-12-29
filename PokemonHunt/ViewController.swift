@@ -27,6 +27,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             mapView.showsUserLocation = true
             
             manager.startUpdatingLocation()
+            
+            // timer logic
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
+                if let coord = self.manager.location?.coordinate {
+                    // spawn new Pokemon
+                    let pin = MKPointAnnotation()
+                    pin.coordinate = coord
+                    
+                    let randLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                    let randLng = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                    
+                    pin.coordinate.latitude += randLat
+                    pin.coordinate.longitude += randLng
+                    
+                    self.mapView.addAnnotation(pin)
+                }
+                
+            })
         } else {
             manager.requestWhenInUseAuthorization()
         }
@@ -45,7 +63,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         // stop moving map when user moves = allow panning
         if updateCount < 3 {
-            let region = MKCoordinateRegionMakeWithDistance(manager.location!.coordinate, 400, 400)
+            let region = MKCoordinateRegionMakeWithDistance(manager.location!.coordinate, 200, 200)
             
             // false so it's smooth upon opening
             mapView.setRegion(region, animated: false)
@@ -62,7 +80,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func centerTapped(_ sender: Any) {
         if let coord = manager.location?.coordinate {
-            let region = MKCoordinateRegionMakeWithDistance(coord, 400, 400)
+            let region = MKCoordinateRegionMakeWithDistance(coord, 200, 200)
         
             // true so it's smooth when we re-center
             mapView.setRegion(region, animated: true)
