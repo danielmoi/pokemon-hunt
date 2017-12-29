@@ -36,8 +36,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
                 if let coord = self.manager.location?.coordinate {
                     // spawn new Pokemon
-                    let pin = MKPointAnnotation()
-                    pin.coordinate = coord
+                    // use our subclass of MKAnnotation
+                    let pin = PokemonAnnotation(coordinate: coord)
                     
                     let randLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
                     let randLng = (Double(arc4random_uniform(200)) - 100.0) / 50000.0

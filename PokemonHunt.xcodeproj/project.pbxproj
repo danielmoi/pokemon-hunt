@@ -16,6 +16,7 @@
 		1E3EAE4F1FF5C69F009CA0D1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3EAE4E1FF5C69F009CA0D1 /* MapKit.framework */; };
 		1E3EAE511FF5DFF8009CA0D1 /* PokedexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3EAE501FF5DFF8009CA0D1 /* PokedexViewController.swift */; };
 		1E3EAE531FF5E46A009CA0D1 /* CoreDataHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3EAE521FF5E46A009CA0D1 /* CoreDataHelp.swift */; };
+		1E3EAE551FF70595009CA0D1 /* PokemonAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3EAE541FF70595009CA0D1 /* PokemonAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1E3EAE4E1FF5C69F009CA0D1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1E3EAE501FF5DFF8009CA0D1 /* PokedexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexViewController.swift; sourceTree = "<group>"; };
 		1E3EAE521FF5E46A009CA0D1 /* CoreDataHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelp.swift; sourceTree = "<group>"; };
+		1E3EAE541FF70595009CA0D1 /* PokemonAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			children = (
 				1E3EAE381FF5BD87009CA0D1 /* AppDelegate.swift */,
 				1E3EAE3A1FF5BD87009CA0D1 /* ViewController.swift */,
+				1E3EAE541FF70595009CA0D1 /* PokemonAnnotation.swift */,
 				1E3EAE3C1FF5BD87009CA0D1 /* Main.storyboard */,
 				1E3EAE501FF5DFF8009CA0D1 /* PokedexViewController.swift */,
 				1E3EAE521FF5E46A009CA0D1 /* CoreDataHelp.swift */,
@@ -161,6 +164,7 @@
 				1E3EAE511FF5DFF8009CA0D1 /* PokedexViewController.swift in Sources */,
 				1E3EAE391FF5BD87009CA0D1 /* AppDelegate.swift in Sources */,
 				1E3EAE531FF5E46A009CA0D1 /* CoreDataHelp.swift in Sources */,
+				1E3EAE551FF70595009CA0D1 /* PokemonAnnotation.swift in Sources */,
 				1E3EAE411FF5BD87009CA0D1 /* PokemonHunt.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
