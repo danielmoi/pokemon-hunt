@@ -45,11 +45,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         // stop moving map when user moves = allow panning
         if updateCount < 3 {
-            let region = MKCoordinateRegionMakeWithDistance(manager.location!.coordinate, 1000, 1000)
+            let region = MKCoordinateRegionMakeWithDistance(manager.location!.coordinate, 400, 400)
             
             // false so it's smooth upon opening
             mapView.setRegion(region, animated: false)
             updateCount += 1
+        } else {
+            // stop this function getting called ALL the time
+            manager.stopUpdatingLocation()
         }
         
         
@@ -57,7 +60,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     
-
+    @IBAction func centerTapped(_ sender: Any) {
+        if let coord = manager.location?.coordinate {
+            let region = MKCoordinateRegionMakeWithDistance(coord, 400, 400)
+        
+            // true so it's smooth when we re-center
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
 
 }
 
