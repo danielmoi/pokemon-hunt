@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -22,12 +22,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         pokemons = getAllPokemon()
-        print(pokemons)
         
         manager.delegate = self
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            print("READY TO GO!")
+            
+            mapView.delegate = self
             mapView.showsUserLocation = true
             
             manager.startUpdatingLocation()
@@ -52,10 +52,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             manager.requestWhenInUseAuthorization()
         }
-        
-        
-        
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -76,9 +72,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             // stop this function getting called ALL the time
             manager.stopUpdatingLocation()
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        
+        if annotation is MKUserLocation {
+            // the user is a pin too
+            pinView.image = UIImage(named: "player")
+        } else {
+            pinView.image = UIImage(named: "eevee")
+        }
+        
+        var frame = pinView.frame
+        frame.size.height = 50
+        frame.size.width = 50
+        pinView.frame = frame
         
         
         
+        return pinView
     }
 
     
