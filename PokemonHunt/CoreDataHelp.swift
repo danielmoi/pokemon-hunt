@@ -56,3 +56,33 @@ func getAllPokemon() -> [Pokemon] {
     
     return []
 }
+
+func getAllCaughtPokemon() -> [Pokemon] {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let fetchRequest = Pokemon.fetchRequest() as NSFetchRequest<Pokemon>
+    
+    // %@ refers to the arguments that we pass
+    fetchRequest.predicate = NSPredicate(format: "caught == %@")
+    
+    do {
+        let pokemons = try context.fetch(fetchRequest)
+        return pokemons
+    } catch {}
+    return []
+}
+
+func getAllUncaughtPokemon() -> [Pokemon] {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let fetchRequest = Pokemon.fetchRequest() as NSFetchRequest<Pokemon>
+    
+    // %@ refers to the arguments that we pass
+    fetchRequest.predicate = NSPredicate(format: "caught != %@")
+    
+    do {
+        let pokemons = try context.fetch(fetchRequest)
+        return pokemons
+    } catch {}
+    return []
+}
