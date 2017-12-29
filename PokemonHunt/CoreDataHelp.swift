@@ -38,3 +38,21 @@ func createPokemon(name: String, imageName: String) {
     pokemon.imageName = imageName
     
 }
+
+func getAllPokemon() -> [Pokemon] {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    do {
+        let pokemons = try context.fetch(Pokemon.fetchRequest()) as! [Pokemon]
+        
+        // this will only run if pokemon haven't been created yet!
+        if (pokemons.count == 0) {
+            createAllPokemon()
+            return getAllPokemon()
+        }
+        
+        return pokemons
+    } catch {}
+    
+    return []
+}
