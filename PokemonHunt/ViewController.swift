@@ -112,14 +112,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let region = MKCoordinateRegionMakeWithDistance(view.annotation!.coordinate, 200, 200)
         mapView.setRegion(region, animated: true)
         
-        // see if trainer is inside pokemon's Rect
-        if let coord = manager.location?.coordinate {
-            if MKMapRectContainsPoint(mapView.visibleMapRect, MKMapPointForCoordinate(coord)) {
-                print("WE CAN CATCH!")
-            } else {
-                print("NAH CAN'T CATCH :(")
+        // use a timer to allow map to re-center on pokemon
+        // before we do the Point in Rect check
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
+            // see if trainer is inside pokemon's Rect
+            if let coord = self.manager.location?.coordinate {
+                if MKMapRectContainsPoint(mapView.visibleMapRect, MKMapPointForCoordinate(coord)) {
+                    print("WE CAN CATCH!")
+                } else {
+                    print("NAH CAN'T CATCH :(")
+                }
             }
         }
+        
+
     }
 
     
