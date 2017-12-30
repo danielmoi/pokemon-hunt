@@ -115,20 +115,42 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // use a timer to allow map to re-center on pokemon
         // before we do the Point in Rect check
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
+            // this is the pokemon that was tapped
+            let pokemon = (view.annotation as! PokemonAnnotation).pokemon
+            
             // see if trainer is inside pokemon's Rect
             if let coord = self.manager.location?.coordinate {
                 if MKMapRectContainsPoint(mapView.visibleMapRect, MKMapPointForCoordinate(coord)) {
                     print("WE CAN CATCH!")
                     
                     // set the pokemon to caught!
-                    let pokemon = (view.annotation as! PokemonAnnotation).pokemon
                     pokemon.caught = true
                     
                     // save
                     (UIApplication.shared.delegate as! AppDelegate).saveContext()
                     
+                    // remove from map
+                    mapView.removeAnnotation(view.annotation!)
+                    
+                    // alert
+                    let alertVC = UIAlertController(title: "Success", message: "You caught a \(pokemon.name!)!", preferredStyle: .alert)
+                    let actionOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    let actionPokedex = UIAlertAction(title: "Pokedex", style: .default, handler: { (action) in
+                        self.performSegue(withIdentifier: "pokedexSegue", sender: nil)
+                    })
+                    
+                    alertVC.addAction(actionOk)
+                    alertVC.addAction(actionPokedex)
+                    self.present(alertVC, animated: true, completion: nil)
+                    
                 } else {
                     print("NAH CAN'T CATCH :(")
+                    // alert
+                    let alertVC = UIAlertController(title: "Uh-oh", message: "You are too far away to catch the \(pokemon.name!). Move closer to it!", preferredStyle: .alert)
+                    let actionOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+
+                    alertVC.addAction(actionOk)
+                    self.present(alertVC, animated: true, completion: nil)
                 }
             }
         }
