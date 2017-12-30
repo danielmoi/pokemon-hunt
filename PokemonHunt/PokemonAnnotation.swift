@@ -13,10 +13,16 @@ import MapKit
 // it has the "type" MKAnnotation
 // NB. the order of the INHERITANCE CLAUSE matters (NSObject must come first
 class PokemonAnnotation: NSObject, MKAnnotation {
+    // needed
     var coordinate: CLLocationCoordinate2D
     
-    init(coordinate: CLLocationCoordinate2D) {
+    // custom
+    var pokemon: Pokemon
+    
+    // needed
+    init(coordinate: CLLocationCoordinate2D, pokemon: Pokemon) {
         self.coordinate = coordinate
+        self.pokemon = pokemon
     }
     
 }

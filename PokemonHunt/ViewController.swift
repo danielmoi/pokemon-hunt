@@ -35,9 +35,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             // timer logic
             Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
                 if let coord = self.manager.location?.coordinate {
+                    let pokemon = self.pokemons[Int(arc4random_uniform(UInt32(self.pokemons.count)))]
+                    
                     // spawn new Pokemon
                     // use our subclass of MKAnnotation
-                    let pin = PokemonAnnotation(coordinate: coord)
+                    let pin = PokemonAnnotation(coordinate: coord, pokemon: pokemon)
                     
                     let randLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
                     let randLng = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
@@ -78,11 +80,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
         
+        
+        
         if annotation is MKUserLocation {
             // the user is a pin too
             pinView.image = UIImage(named: "player")
         } else {
-            pinView.image = UIImage(named: "eevee")
+            let pokemon = (annotation as! PokemonAnnotation).pokemon
+            pinView.image = UIImage(named: pokemon.imageName!)
         }
         
         var frame = pinView.frame
