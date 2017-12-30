@@ -19,8 +19,9 @@ class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         caught = getAllCaughtPokemon()
+        print("CAUGHT:\(caught)")
         uncaught = getAllUncaughtPokemon()
-        
+        print("UNCAUGHT:\(uncaught)")
         tableView.delegate = self
         tableView.dataSource = self
     }

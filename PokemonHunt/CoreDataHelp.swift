@@ -63,7 +63,9 @@ func getAllCaughtPokemon() -> [Pokemon] {
     let fetchRequest = Pokemon.fetchRequest() as NSFetchRequest<Pokemon>
     
     // %@ refers to the arguments that we pass
-    fetchRequest.predicate = NSPredicate(format: "caught == %@")
+    // FIXME: somewhy we are storing the STRINGS 0 or 1 instead of
+    // the booleans true or false
+    fetchRequest.predicate = NSPredicate(format: "caught == %@", "1")
     
     do {
         let pokemons = try context.fetch(fetchRequest)
@@ -78,7 +80,9 @@ func getAllUncaughtPokemon() -> [Pokemon] {
     let fetchRequest = Pokemon.fetchRequest() as NSFetchRequest<Pokemon>
     
     // %@ refers to the arguments that we pass
-    fetchRequest.predicate = NSPredicate(format: "caught != %@")
+    // FIXME: somewhy we are storing the STRINGS 0 or 1 instead of
+    // the booleans true or false
+    fetchRequest.predicate = NSPredicate(format: "caught == %@", "0")
     
     do {
         let pokemons = try context.fetch(fetchRequest)

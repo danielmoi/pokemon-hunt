@@ -119,6 +119,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             if let coord = self.manager.location?.coordinate {
                 if MKMapRectContainsPoint(mapView.visibleMapRect, MKMapPointForCoordinate(coord)) {
                     print("WE CAN CATCH!")
+                    
+                    // set the pokemon to caught!
+                    let pokemon = (view.annotation as! PokemonAnnotation).pokemon
+                    pokemon.caught = true
+                    
+                    // save
+                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                    
                 } else {
                     print("NAH CAN'T CATCH :(")
                 }
