@@ -26,34 +26,45 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         manager.delegate = self
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            
-            mapView.delegate = self
-            mapView.showsUserLocation = true
-            
-            manager.startUpdatingLocation()
-            
-            // timer logic
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
-                if let coord = self.manager.location?.coordinate {
-                    let pokemon = self.pokemons[Int(arc4random_uniform(UInt32(self.pokemons.count)))]
-                    
-                    // spawn new Pokemon
-                    // use our subclass of MKAnnotation
-                    let pin = PokemonAnnotation(coordinate: coord, pokemon: pokemon)
-                    
-                    let randLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
-                    let randLng = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
-                    
-                    pin.coordinate.latitude += randLat
-                    pin.coordinate.longitude += randLng
-                    
-                    self.mapView.addAnnotation(pin)
-                }
-                
-            })
+            setup()
+
         } else {
             manager.requestWhenInUseAuthorization()
         }
+    }
+    
+    // when we give permission (first time users)
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            setup()
+        }
+    }
+    
+    func setup() {
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        
+        manager.startUpdatingLocation()
+        
+        // timer logic
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
+            if let coord = self.manager.location?.coordinate {
+                let pokemon = self.pokemons[Int(arc4random_uniform(UInt32(self.pokemons.count)))]
+                
+                // spawn new Pokemon
+                // use our subclass of MKAnnotation
+                let pin = PokemonAnnotation(coordinate: coord, pokemon: pokemon)
+                
+                let randLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                let randLng = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                
+                pin.coordinate.latitude += randLat
+                pin.coordinate.longitude += randLng
+                
+                self.mapView.addAnnotation(pin)
+            }
+            
+        })
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
