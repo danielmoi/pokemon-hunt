@@ -99,6 +99,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         return pinView
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapView.deselectAnnotation(view.annotation!, animated: true)
+        
+        // we don't want to catch ourselves :)
+        if view.annotation! is MKUserLocation {
+            return
+        }
+        
+        // center map on the tapped pokemon
+        let region = MKCoordinateRegionMakeWithDistance(view.annotation!.coordinate, 200, 200)
+        mapView.setRegion(region, animated: true)
+        
+        // see if trainer is inside pokemon's Rect
+        if let coord = manager.location?.coordinate {
+            if MKMapRectContainsPoint(mapView.visibleMapRect, MKMapPointForCoordinate(coord)) {
+                print("WE CAN CATCH!")
+            } else {
+                print("NAH CAN'T CATCH :(")
+            }
+        }
+    }
 
     
     @IBAction func centerTapped(_ sender: Any) {
